@@ -1,7 +1,12 @@
-[![CI](https://github.com/nogibjj/python-ruff-template/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/python-ruff-template/actions/workflows/cicd.yml)
-## Template for Python projects with RUFF linter
+[![CI](https://github.com/nogibjj/atreya-tadepalli-miniproject10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/atreya-tadepalli-miniproject10/actions/workflows/cicd.yml)
+### Mini Project 10 - Pyspark Usage
 
-![1 15_rust_built_python_tools](https://github.com/nogibjj/python-ruff-template/assets/58792/db5f7bda-a977-4c67-acbe-a70fe034fbdf)
+## Introduction
+
+In this project, I worked on harnessing PySpark to execute SQL operations. In this project, I reviewed records associated with health failure, including blood pressure status, creatinine levels, and smoking habits, to better understand biological indicators of heart failure, segmented by age.
+
+## Steps
+
 
 
 
