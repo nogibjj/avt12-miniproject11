@@ -5,7 +5,6 @@ from pyspark.sql import SparkSession
 from mylib.extract import extract
 from mylib.transform_load import trans_load
 from mylib.query import query, describe, add_column
-import pandas
 
 query12="""
 SELECT AVG(creatinine_phosphokinase), AVG(serum_creatinine), AVG(serum_sodium), AVG(age)
@@ -24,7 +23,6 @@ if __name__ == "__main__":
     print(add_column(spark,result_table))
     result_table.show()
     result_table.createOrReplaceTempView("table_query")
-    #query_str = "SELECT AVG(serum_creatinine), AVG(creatinine_phosphokinase), AVG(serum_sodium), AVG(age) FROM table_query WHERE sex = 1"
     query(spark,result_table,query12)
     spark.stop()    
 

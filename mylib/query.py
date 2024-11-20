@@ -1,6 +1,4 @@
-from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, when
-import os
 
 def add_column(spark, heart_df):
     #Includes a transformation

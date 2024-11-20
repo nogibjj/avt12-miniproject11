@@ -3,12 +3,11 @@ Test goes here
 
 """
 
-import pytest
 from pyspark.sql import SparkSession
 from mylib.extract import extract
 import os
 from mylib.transform_load import trans_load
-from mylib.query import query, add_column
+from mylib.query import query
 
 spark = SparkSession.builder.master("local[*]").appName("test_app").getOrCreate()
 
