@@ -7,6 +7,13 @@ In this project, I worked on harnessing PySpark to execute SQL operations. In th
 
 ## Steps
 
+1. The first step involved downloading pyspark and java appropriately within Codespaces. Once these were downloaded, the proper packages could be imported for use, such as SparkSession and requests.
+   
+2. The second step was to revise the methods originally used to perform SQL operations on Databricks to utilize Pyspark. I was able to revise methods such as extract and transform_load to utilize PySpark. Specifically with transform_load, I have specified the schema to upload the data into a dataframe.
+
+3. Finally, I have prepared new methods to query the data and transform the data by adding new columns. These are ultimately executed in the main file, after creating a temporary view of the dataframe.
+
+   a. `Query` - This method involved gathering the average values for health metrics for patients of each age.
 
 
 
