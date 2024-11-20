@@ -1,19 +1,33 @@
 """
 Main cli or app entry point
 """
+from pyspark.sql import SparkSession
+from mylib.extract import extract
+from mylib.transform_load import trans_load
+from mylib.query import query, describe, add_column
+import pandas
 
-from mylib.calculator import add
-import click
-
-#var=1;var=2
-
-@click.command("add")
-@click.argument("a", type=int)
-@click.argument("b", type=int)
-def add_cli(a, b):
-    click.echo(add(a, b))
+query12="""
+SELECT AVG(creatinine_phosphokinase), AVG(serum_creatinine), AVG(serum_sodium), AVG(age)
+FROM table_query
+WHERE sex=1
+GROUP BY age
+ORDER BY age DESC;
+"""
 
 
 if __name__ == "__main__":
-    # pylint: disable=no-value-for-parameter
-    add_cli()
+    extract()
+    spark = SparkSession.builder.appName("heart-data").getOrCreate()
+    result_table = trans_load(spark)
+    describe(result_table)
+    print(add_column(spark,result_table))
+    result_table.show()
+    result_table.createOrReplaceTempView("table_query")
+    #query_str = "SELECT AVG(serum_creatinine), AVG(creatinine_phosphokinase), AVG(serum_sodium), AVG(age) FROM table_query WHERE sex = 1"
+    query(spark,result_table,query12)
+    spark.stop()    
+
+
+
+
