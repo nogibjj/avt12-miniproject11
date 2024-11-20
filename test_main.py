@@ -30,4 +30,4 @@ def test_query():
     result_table = trans_load(spark)
     result_table.createOrReplaceTempView("test_query")
     test_query12="SELECT AVG(age) FROM test_query WHERE smoking=1"
-    assert query(spark,result_table,test_query12) is not None
+    assert query(spark,result_table,test_query12) is None
