@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 
 
-def extract_load(url="https://shorturl.at/5YexG", 
+def extract_load(url="https://raw.githubusercontent.com/MainakRepositor/Datasets/refs/heads/master/heart_failure_clinical_records_dataset.csv", 
     file_path="data/heart_failure.csv"):
 
     if os.path.dirname(file_path):

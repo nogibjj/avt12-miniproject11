@@ -16,7 +16,7 @@ spark = SparkSession.builder.master("local[*]").appName("test_app").getOrCreate(
 
 def test_extract_load():
 
-    output_path = extract_load(url="https://shorturl.at/5YexG", 
+    output_path = extract_load(url="https://raw.githubusercontent.com/MainakRepositor/Datasets/refs/heads/master/heart_failure_clinical_records_dataset.csv", 
     file_path="data/heart_failure.csv")
     assert os.path.exists(output_path)
 
@@ -25,7 +25,7 @@ def test_transform():
     assert df is None, "Dataframe is None; load_data failed."
 
 def test_query():
-    extract_load(url="https://shorturl.at/5YexG", 
+    extract_load(url="https://raw.githubusercontent.com/MainakRepositor/Datasets/refs/heads/master/heart_failure_clinical_records_dataset.csv", 
     file_path="data/heart_failure.csv")
     transform_table("heart-failure-load","heart-failure-transform")
     assert query("SELECT AVG(age) FROM heart-failure-transform WHERE smoking=1") is None
