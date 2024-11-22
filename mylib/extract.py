@@ -24,7 +24,8 @@ def extract_load(url="https://shorturl.at/5YexG",
     .appName("Extract_Load") \
     .config("spark.jars.packages", "io.delta:delta-core_2.12:2.3.0") \
     .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+    .config("spark.sql.catalog.spark_catalog",\
+             "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
     .getOrCreate()
     #hf_df=pd.read_csv(url)
     #print(hf_df.head())
