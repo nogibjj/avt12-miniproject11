@@ -14,4 +14,4 @@ def transform_table(source_name,transformed_name):
     return source_df.show()
 
 if __name__ == '__main__':
-    transform_table("heart-failure-load","heart-failure-transform")
+    transform_table("heart_failure_load","heart-failure-transform")
