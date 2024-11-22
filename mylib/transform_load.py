@@ -3,7 +3,7 @@ from pyspark.sql.functions import when
 
 
 def transform_table(source_name,transformed_name):
-    spark=SparkSession.build.appName("transform-table").getOrCreate()
+    spark=SparkSession.builder.appName("transform-table").getOrCreate()
     source_df=spark.read.table(source_name)
     source_df=source_df.withColumn("senior_citizen",
                                    when(source_df["age"]>65,1)

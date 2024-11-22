@@ -25,5 +25,8 @@ def test_transform():
     assert df is None, "Dataframe is None; load_data failed."
 
 def test_query():
-    assert query("SELECT AVG(age) FROM test_query WHERE smoking=1") is None
+    extract_load(url="https://shorturl.at/5YexG", 
+            file_path="data/heart-failure.csv")
+    transform_table("heart-failure-load","heart-failure-transform")
+    assert query("SELECT AVG(age) FROM heart-failure-transform WHERE smoking=1") is None
     
