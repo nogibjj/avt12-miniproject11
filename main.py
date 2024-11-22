@@ -7,9 +7,10 @@ from mylib.transform_load import trans_load
 from mylib.query import query, describe, add_column
 
 query12="""
-SELECT AVG(creatinine_phosphokinase), AVG(serum_creatinine), AVG(serum_sodium), AVG(age)
-FROM table_query
-WHERE sex=1
+SELECT MAX(creatinine_phosphokinase), AVG(ejection_fraction),\
+      MEDIAN(high_blood_pressure), MEDIAN(anaemia)
+FROM heart-failure-transform
+WHERE (smoking=1 and platelets>100000)
 GROUP BY age
 ORDER BY age DESC;
 """

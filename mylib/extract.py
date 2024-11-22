@@ -1,17 +1,21 @@
 import requests
 import os
+from pyspark.sql import SparkSession 
+import pandas as pd
 
 
-def extract(url="https://shorturl.at/5YexG", 
-            file_path="data/heart-failure.csv",
-            directory="data",
+def extract_load(url="https://shorturl.at/5YexG", 
+            file_path="data/heart-failure.csv"
 ):
-    """"Extract a url to a file path"""
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    with requests.get(url) as r:
-        with open(file_path, 'wb') as f:
-            f.write(r.content)
+    """"Extract a url to a file path and load to Databricks"""
+    spark = SparkSession.builder.appName("Extract_Load").getOrCreate()
+    hf_df=pd.read_csv(url)
+    print(hf_df.head())
+    heart_failure_df=spark.createDataFrame(hf_df)
+    heart_failure_df.write.format("delta").mode("append").saveAsTable("heart_failure_load")
+    print("Successfully extracted and loaded data")
     return file_path
 
+
 if __name__ == '__main__':
-    extract()
+    extract_load()
