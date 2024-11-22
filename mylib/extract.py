@@ -11,7 +11,7 @@ def extract_load(url="https://shorturl.at/5YexG",
     print(hf_df.head())
     heart_failure_df=spark.createDataFrame(hf_df)
     heart_failure_df.write.format("delta").mode("append").saveAsTable("heart_failure_load")
-    print("Successfully extracted and loaded data")
+    print("Successfully extracted and loads data")
     return file_path
 
 
