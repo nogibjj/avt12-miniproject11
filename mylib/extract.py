@@ -14,12 +14,18 @@ def extract_load(url="https://shorturl.at/5YexG",
     file_path="data/heart_failure.csv",
     directory="data"):
 
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    if os.path.dirname(file_path):
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with requests.get(url) as r:
         with open(file_path, 'wb') as f:
             f.write(r.content)
 
-    spark = SparkSession.builder.appName("Extract_Load").getOrCreate()
+    spark = SparkSession.builder \
+    .appName("Extract_Load") \
+    .config("spark.jars.packages", "io.delta:delta-core_2.12:2.3.0") \
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+    .getOrCreate()
     #hf_df=pd.read_csv(url)
     #print(hf_df.head())
     #heart_failure_df=spark.createDataFrame(hf_df)
