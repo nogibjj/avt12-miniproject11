@@ -9,6 +9,8 @@ import os
 from mylib.transform_load import transform_table
 from mylib.query import query
 
+
+
 spark = SparkSession.builder.master("local[*]").appName("test_app").getOrCreate()
 
 
@@ -24,3 +26,4 @@ def test_transform():
 
 def test_query():
     assert query("SELECT AVG(age) FROM test_query WHERE smoking=1") is None
+    
