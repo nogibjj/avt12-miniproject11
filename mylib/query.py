@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 """
 def add_column(spark, heart_df):
-    #Includes a transformation
+    #Includes transformations
     heart_df=heart_df.withColumn(
         "low_platelet_count",
         when(col("platelets") <= 150000, 1).otherwise(0))

@@ -11,7 +11,7 @@ import requests
 
 
 def extract_load(url="https://shorturl.at/5YexG", 
-    file_path="data/heart-failure.csv",
+    file_path="data/heart_failure.csv",
     directory="data"):
 
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
