@@ -4,7 +4,7 @@ Test goes here
 """
 
 from pyspark.sql import SparkSession
-from mylib.extract import extract
+from mylib.extract import extract_load
 import os
 from mylib.transform_load import transform_table
 from mylib.query import query
@@ -12,13 +12,10 @@ from mylib.query import query
 spark = SparkSession.builder.master("local[*]").appName("test_app").getOrCreate()
 
 
-def test_extract_csv():
+def test_extract_load():
 
-    output_path = extract(url="https://shorturl.at/5YexG", 
-            file_path="data/heart-failure.csv",
-            directory="data",
-)
-
+    output_path = extract_load(url="https://shorturl.at/5YexG", 
+            file_path="data/heart-failure.csv")
     assert os.path.exists(output_path)
 
 def test_transform():
