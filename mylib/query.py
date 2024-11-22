@@ -1,5 +1,3 @@
-from pyspark.sql.functions import col, when
-import pandas as pd
 from pyspark.sql import SparkSession
 """
 def add_column(spark, heart_df):
