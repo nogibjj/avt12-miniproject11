@@ -3,7 +3,8 @@
 
 ## Introduction
 
-In this project, I worked on preparing a datasink using Databricks, and ultimately accessing this data through a data pipeline to return the result of a query.
+In this project, I worked on preparing a datasink using Databricks, and ultimately accessing this data through a data pipeline to return the result of a query. The Databricks project is linked here:
+https://dbc-c95fb6bf-a65d.cloud.databricks.com/browse/folders/1492636779888795?o=3670519680858392
 
 ## Data
 
