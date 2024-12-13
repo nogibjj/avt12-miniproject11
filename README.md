@@ -1,40 +1,34 @@
 [![CI](https://github.com/nogibjj/atreya-tadepalli-miniproject10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/atreya-tadepalli-miniproject10/actions/workflows/cicd.yml)
-### Mini Project 10 - Pyspark Usage
+### Mini Project 11 - Databricks ETL
 
 ## Introduction
 
-In this project, I worked on harnessing PySpark to execute SQL operations. In this project, I reviewed records associated with health failure, including blood pressure status, creatinine levels, and smoking habits, to better understand biological indicators of heart failure, segmented by age.
+In this project, I worked on preparing a datasink using Databricks, and ultimately accessing this data through a data pipeline to return the result of a query.
+
+## Data
+
+The data utilized in this project comes from a publicly-available dataset on Github which concerns heart failure, and the characteristics associated with heart failures. It includes varaibles related to age, smoking status, sex, blood pressure, diabetes, and biological indicator amounts, such as creatinine phosphokinase.
 
 ## Steps
 
-1. The first step involved downloading pyspark and java appropriately within Codespaces. Once these were downloaded, the proper packages could be imported for use, such as SparkSession and requests.
+1. The first step involved connecting my Github repository to Databricks and preparing a new project. Following this, I developed three separate notebooks to mirror the previous week's assignment and work on extracting, transforming, and querying the dataset.
    
-2. The second step was to revise the methods originally used to perform SQL operations on Databricks to utilize Pyspark. I was able to revise methods such as extract and transform_load to utilize PySpark. Specifically with transform_load, I have specified the schema to upload the data into a dataframe.
+2. The second step was to extract the dataset and ultimately load it into a table in Databricks. TO do so, I created a schema under our Serverless State Warehouse, and directed a table to be created with the data provided within the dataset.
 
-3. Finally, I have prepared new methods to query the data and transform the data by adding new columns. These are ultimately executed in the main file, after creating a temporary view of the dataframe.
+3. After establishing the table in Databricks, I sought to transform the table by creating a new table which included a new column to denote Senior status. If the age of a patient was over 65, I would mark as a senior in a new column. I would then select a subset of the columns to include in the new table, heart_transformed. Additionally, for this new table, I only retained rows for patients who had diabetes (diabetes==1).
 
-   a. `Query` - This method involved gathering the average values for health metrics for patients of each age. Specifically, I sought to understand the average creatinine_phosphokinase, serum_creatinine, serum_sodium, and age values, for each age value represented within the dataset. Additionally, I sought to gather these average values for females within the dataset, so I specified that in the SQL command below.
+4. Finally, I queried the data using the following SQL command: "SELECT * FROM ids706_data_engineering.at_heart_data.heart_failure_data_transformed WHERE smoking==1"
 
-'SELECT AVG(creatinine_phosphokinase), AVG(serum_creatinine), AVG(serum_sodium), AVG(age)
-FROM table_query
-WHERE sex=1
-GROUP BY age
-ORDER BY age DESC;'  
+## Execution
 
+To execute this series of steps, I used the Databricks Workflow function, and set up a workflow with extract, transform, and query in order. I include the diagram below, with successful notations following the completed ETL and querying process.
 
-
-
-   b. `Add_Column' - This method involved adding a new column to the dataset, conditional on another column. In this case, I performed a filter and set up a new variable to indicate if a patient had a low platelet count, or under 150,000 platelets (1), or if they exceeded that threshold. The below image shows the addition of one more column, `low_platelet_count`, within the dataset.
-
-   <img width="895" alt="SQL-query-add_column" src="https://github.com/user-attachments/assets/81fa99ea-ecd5-4df4-bfc7-fd8bf0caa614">
-
+<img width="710" alt="image" src="https://github.com/user-attachments/assets/f947b9d9-a921-467f-ba1c-3eb3f81da6f4" />
 
 ## Results
 
-The below image displays the results of the SQL operation. Additionally, this is also shared within the markdown file generated.
+Following the successful execution of the workflow, the query resulted in 30 records where the patient had diabetes and was a smoker. Of these patients, 40% died from the heart failure incident.
 
-<img width="460" alt="SQL-query-pyspark" src="https://github.com/user-attachments/assets/7c64da88-1d8c-4d0e-be23-6c2e04edaa03">
-
-
+<img width="597" alt="image" src="https://github.com/user-attachments/assets/7bac9fbc-01c4-4e58-b24b-349cce431525" />
 
 
